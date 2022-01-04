@@ -26,6 +26,10 @@
       "prettier --write"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haokunaxx/common-config.git"
+  },
   "devDependencies": {
     "@commitlint/cli": "^16.0.1",
     "@commitlint/config-conventional": "^16.0.0",
