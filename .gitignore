@@ -4,6 +4,8 @@
 .LSOverride
 node_modules
 /node_modules
+dist
+/dist
 # Icon must end with two \r
 Icon
 

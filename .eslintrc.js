@@ -47,6 +47,7 @@ module.exports = {
     ],
     'import/no-extraneous-dependencies': [ERROR, { devDependencies: true }],
     'import/prefer-default-export': OFF,
+    'import/no-import-module-exports': OFF,
     'import/no-unresolved': ERROR,
     'import/no-dynamic-require': OFF,
 
@@ -78,6 +79,8 @@ module.exports = {
     'unicorn/prefer-query-selector': ERROR,
     'unicorn/no-null': OFF,
     'unicorn/no-array-reduce': OFF,
+    'unicorn/numeric-separators-style': OFF,
+    'unicorn/prefer-module': OFF,
 
     '@typescript-eslint/no-useless-constructor': ERROR,
     '@typescript-eslint/no-empty-function': WARN,
@@ -97,6 +100,7 @@ module.exports = {
     'react/state-in-constructor': OFF,
     'react/jsx-props-no-spreading': OFF,
     'react/prop-types': OFF,
+    'react/button-has-type': OFF,
 
     'jsx-a11y/click-events-have-key-events': OFF,
     'jsx-a11y/no-noninteractive-element-interactions': OFF,

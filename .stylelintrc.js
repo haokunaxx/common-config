@@ -10,5 +10,5 @@ module.exports = {
     'no-invalid-double-slash-comments': null,
     'rule-empty-line-before': ['always', { except: ['after-single-line-comment', 'first-nested'] }],
   },
-  ignoreFiles: ['node_modules/**/*', 'build/**/*'],
-}
+  ignoreFiles: ['node_modules/**/*', 'build/**/*', 'dist/**/*'],
+};

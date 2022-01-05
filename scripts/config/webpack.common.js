@@ -4,12 +4,16 @@ const { resolve } = require('path');
 // custom
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const WebpackBar = require('webpackbar')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // constant
 const { PROJECT_PATH, isDev, isProd } = require('../constant');
 
 // functions
 const getCommonCssLoader = (importLoaders = 1) => [
-  'style-loader',
+  isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
   {
     loader: 'css-loader',
     options: {
@@ -73,6 +77,13 @@ module.exports = {
       Utils: resolve(PROJECT_PATH, './src/utils'),
     },
   },
+  //webpack5默认支持缓存
+  cache: {
+    type: 'filesystem',
+    buildDependencies: {
+      config: [__filename],
+    },
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -96,7 +107,36 @@ module.exports = {
             useShortDoctype: true,
           },
     }),
+    new CopyWebpackPlugin({
+      patterns:[
+        {
+          context:resolve(PROJECT_PATH,'./public'),
+          from:'*',
+          to:resolve(PROJECT_PATH,'./dist'),
+          toType:'dir',
+          globOptions:{
+            dot:true,
+            gitignore: true,
+            ignore:['**/index.html']
+          }
+        }
+      ]
+    }),
+    new WebpackBar({
+      name:isDev ? '正在启动':'正在打包',
+      color:'#fa8c16'
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      typescript:{
+        configFile: resolve(PROJECT_PATH,'./tsconfig.json')
+      }
+    })
   ],
+  externals:{
+    react:'React',
+    'react-dom':'ReactDOM',
+    axios:'axios'
+  },
   module: {
     rules: [
       {
