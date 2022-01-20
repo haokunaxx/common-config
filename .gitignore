@@ -9,6 +9,9 @@ dist
 # Icon must end with two \r
 Icon
 
+# Study File
+src/study
+src/app-study.tsx
 
 # Thumbnails
 ._*

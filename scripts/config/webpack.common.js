@@ -2,12 +2,12 @@
 const { resolve } = require('path');
 
 // custom
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const WebpackBar = require('webpackbar')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin') //清理dist文件夹
+const CopyWebpackPlugin = require('copy-webpack-plugin')      //public文件夹下静态资源拷贝
+const WebpackBar = require('webpackbar')  //terminal工具条
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')  //？
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')   //css文件提取
 // constant
 const { PROJECT_PATH, isDev, isProd } = require('../constant');
 
@@ -69,9 +69,10 @@ module.exports = {
     filename: `js/[name]${isDev ? '' : '.[hash:6]'}.js`,
     path: resolve(PROJECT_PATH, './dist'),
   },
+  //解析
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.json'],
-    alias: {
+    extensions: ['.tsx', 'jsx', '.ts', '.js', '.json'],  //路径后缀
+    alias: {  //别名
       Src: resolve(PROJECT_PATH, './src'),
       Components: resolve(PROJECT_PATH, './src/components'),
       Utils: resolve(PROJECT_PATH, './src/utils'),
@@ -110,10 +111,8 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns:[
         {
-          context:resolve(PROJECT_PATH,'./public'),
-          from:'*',
+          from:resolve(PROJECT_PATH,'./public'),
           to:resolve(PROJECT_PATH,'./dist'),
-          toType:'dir',
           globOptions:{
             dot:true,
             gitignore: true,
@@ -121,6 +120,19 @@ module.exports = {
           }
         }
       ]
+      // patterns:[
+      //   {
+      //     context:resolve(PROJECT_PATH,'./public'),
+      //     from:'*',
+      //     to:resolve(PROJECT_PATH,'./dist'),
+      //     toType:'dir',
+      //     globOptions:{
+      //       dot:true,
+      //       gitignore: true,
+      //       ignore:['**/index.html']
+      //     }
+      //   }
+      // ]
     }),
     new WebpackBar({
       name:isDev ? '正在启动':'正在打包',
@@ -132,11 +144,11 @@ module.exports = {
       }
     })
   ],
-  externals:{
-    react:'React',
-    'react-dom':'ReactDOM',
-    axios:'axios'
-  },
+  // externals:{   //声明的外部库不会打包
+  //   react:'React',
+  //   'react-dom':'ReactDOM',
+  //   axios:'axios'
+  // },
   module: {
     rules: [
       {
@@ -183,7 +195,7 @@ module.exports = {
       },
 
       {
-        test: /\.(tsx?|js)$/,
+        test: /\.(tsx?|jsx?)$/,
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,

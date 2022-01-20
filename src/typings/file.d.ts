@@ -1,3 +1,4 @@
+// 图片文件模块声明
 declare module '*.svg' {
   const path: string;
   export default path;

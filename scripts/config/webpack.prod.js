@@ -3,7 +3,7 @@ const { resolve } = require('path')
 const { merge } = require('webpack-merge')
 const PurgeCSSPlugin = require('purgecss-webpack-plugin')
 const glob = require('glob')  //查找路径文件
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')   //css文件提取，webpack5好像不需要配置
 
 const {PROJECT_PATH} = require('../constant')
 

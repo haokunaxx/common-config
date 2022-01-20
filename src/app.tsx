@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useState } from 'react';
 import Header from 'Components/Header';
+// study
 import testImg from './assets/images/test.jpg';
 
 const ComputedOne = lazy(() => import('Components/LazyLoadTest/com1'));

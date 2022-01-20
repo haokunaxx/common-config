@@ -7,6 +7,7 @@
     "allowJs": true, //允许编译js文件
     "jsx": "react", //tsx文件中支持jsx
     "isolatedModules": true, //额外的属性检查
+    // "isolatedModules": false,
     "strict": true, //启用所有严格类型检查选项
 
     //模块解析选项
@@ -32,5 +33,5 @@
 
     "noEmit": true
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/ts-test"]
 }

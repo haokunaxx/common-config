@@ -120,5 +120,15 @@ module.exports = {
     'no-use-before-define': OFF,
     'no-restricted-syntax': OFF,
     'no-continue': OFF,
+    'max-classes-per-file': OFF, //但文件class的数量限制
+    'class-methods-use-this': OFF, //类方法内部不使用this
+    'no-return-assign': OFF,
+    //函数组件命名规则
+    'react/function-component-definition': [
+      ERROR,
+      { namedComponents: ['function-declaration', 'function-expression', 'arrow-function'] },
+    ],
+    'import/no-extraneous-dependencies': WARN,
+    'no-underscore-dangle': WARN,
   },
 };
